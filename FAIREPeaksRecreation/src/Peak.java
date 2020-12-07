@@ -38,6 +38,21 @@ public class Peak implements Comparable {
         }
     }
 
+    /* This is a version of compareTo that casts to a Peak. This will be preferred
+    if it actually works well. I do not know yet
+    @Override
+    public int compareTo(Object o) {
+        o = (Peak)o;
+        if(peakNumber == ((Peak) o).getPeakNumber()){
+            return 0;
+        } else if(peakNumber > ((Peak) o).getPeakNumber()){
+            return 1;
+        } else{
+            return -1;
+        }
+     */
+
+
     public String getPeakGroup(){
         return peakGroup;
     }
