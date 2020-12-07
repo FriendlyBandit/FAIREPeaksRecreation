@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Importer {
@@ -6,6 +8,7 @@ public class Importer {
 
     public Importer(){
         peakSet = new HashSet();
+        data = new HashMap<>();
     }
 
     /**
@@ -13,7 +16,12 @@ public class Importer {
      * @return
      */
     public HashMap initializeFiles(){
-        Scanner scan1 = new Scanner("src/RealFiles/larval_cns_faire_peaks.bed");
+        Scanner scan1 = null;
+        try {
+            scan1 = new Scanner(new File("C:\\Workspaces\\IntelliJ Workspace\\FAIREPeaksRecreation\\FAIREPeaksRecreation\\FAIREPeaksRecreation\\src\\RealFiles\\larval_cns_faire_peaks.bed"));
+        } catch (FileNotFoundException e) {
+            System.out.println("Wrong file path");
+        }
         Peak benchmarkPeak = initalizePeak(scan1.nextLine());
         Peak tempPeak;
         peakSet.add(benchmarkPeak);

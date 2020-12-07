@@ -11,7 +11,6 @@ public class Peak implements Comparable {
      */
     public Peak(String[] line){
         parsePeak(line);
-
     }
 
     /**
