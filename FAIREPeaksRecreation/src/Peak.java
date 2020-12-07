@@ -29,14 +29,14 @@ public class Peak implements Comparable {
         return Integer.parseInt(peakID.split("_")[2]);
     }
 
-
+    /*
     /**
      * CompareTo method so that peaks can be stored in a BinarySearchTree
      * Use the peakNumber to do this.
      * @param o
      * @return Forgot. Look a the docs for Comparable
      */
-    @Override
+    /*@Override
     public int compareTo(Object o) {
         int peakNumber = parseInt(o.toString());
         if(peakNumber == getPeakNumber()){
@@ -46,22 +46,27 @@ public class Peak implements Comparable {
         } else{
             return 1;
         }
-    }
+    }*/
 
-    /* This is a version of compareTo that casts to a Peak. This will be preferred
-    if it actually works well. I do not know yet
+    /**
+     * CompareTo method so that peaks can be stored in a BinarySearchTree
+     * Use the peakNumber to do this.
+     * @param o
+     * @return Forgot. Look a the docs for Comparable
+     */
+    // This is a version of compareTo that casts to a Peak. This will be preferred
+    //if it actually works well. I do not know yet
     @Override
     public int compareTo(Object o) {
-        o = (Peak)o;
-        if(peakNumber == ((Peak) o).getPeakNumber()){
+        o = (Peak) o;
+        if (peakNumber == ((Peak) o).getPeakNumber()) {
             return 0;
-        } else if(peakNumber > ((Peak) o).getPeakNumber()){
-            return -1;
-        } else{
+        } else if (peakNumber > ((Peak) o).getPeakNumber()) {
             return 1;
+        } else {
+            return -1;
         }
-     */
-
+    }
 
     public String getPeakGroup(){
         return peakGroup;

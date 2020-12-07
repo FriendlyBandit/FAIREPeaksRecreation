@@ -15,10 +15,10 @@ public class Importer {
      * Returns a HashMap of the data from a single file
      * @return
      */
-    public HashMap initializeFiles(){
+    public HashMap initializeFiles(String path){
         Scanner scan1 = null;
         try {
-            scan1 = new Scanner(new File("C:\\Workspaces\\IntelliJ Workspace\\FAIREPeaksRecreation\\FAIREPeaksRecreation\\FAIREPeaksRecreation\\src\\RealFiles\\larval_cns_faire_peaks.bed"));
+            scan1 = new Scanner(new File(path));
         } catch (FileNotFoundException e) {
             System.out.println("Wrong file path");
         }
