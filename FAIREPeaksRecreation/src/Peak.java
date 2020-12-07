@@ -1,3 +1,5 @@
+import static java.lang.Integer.parseInt;
+
 public class Peak implements Comparable {
     private int start, end, peakNumber; //Start and end of a peak, peak number in sequence
     private String peakID, peakGroup; //Gives peak number and also
@@ -9,26 +11,35 @@ public class Peak implements Comparable {
      */
     public Peak(String[] line){
         parsePeak(line);
+
     }
 
     /**
      * Parses a peak line and give the stuff to the related variables
-     * @param s
+     * @param line
      */
-    private void parsePeak(String[] s){
+    private void parsePeak(String[] line){
+        this.peakGroup = line[0];
+        this.start = Integer.parseInt(line[1]);
+        this.end = Integer.parseInt(line[2]);
+        this.peakID = line[3];
+        this.peakNumber = generatePeakNumber();
+    }
 
+    private int generatePeakNumber(){
+        return Integer.parseInt(peakID.split("_")[2]);
     }
 
 
     /**
      * CompareTo method so that peaks can be stored in a BinarySearchTree
      * Use the peakNumber to do this.
-     * @param p
+     * @param o
      * @return Forgot. Look a the docs for Comparable
      */
     @Override
     public int compareTo(Object o) {
-        int peakNumber = Integer.parseInt(o.toString());
+        int peakNumber = parseInt(o.toString());
         if(peakNumber == getPeakNumber()){
             return 0;
         } else if(peakNumber > getPeakNumber()){
