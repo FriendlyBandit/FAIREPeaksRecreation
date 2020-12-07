@@ -29,12 +29,12 @@ public class Peak implements Comparable {
     @Override
     public int compareTo(Object o) {
         int peakNumber = Integer.parseInt(o.toString());
-        if(peakNumber == this.getPeakNumber()){
+        if(peakNumber == getPeakNumber()){
             return 0;
-        } else if(peakNumber > this.getPeakNumber()){
-            return 1;
-        } else{
+        } else if(peakNumber > getPeakNumber()){
             return -1;
+        } else{
+            return 1;
         }
     }
 
@@ -46,9 +46,9 @@ public class Peak implements Comparable {
         if(peakNumber == ((Peak) o).getPeakNumber()){
             return 0;
         } else if(peakNumber > ((Peak) o).getPeakNumber()){
-            return 1;
-        } else{
             return -1;
+        } else{
+            return 1;
         }
      */
 
