@@ -1,6 +1,6 @@
 public class Peak implements Comparable {
     private int start, end, peakNumber; //Start and end of a peak, peak number in sequence
-    private String peakID; //Gives peak number and also
+    private String peakID, peakGroup; //Gives peak number and also
 
 
     /**
@@ -23,11 +23,31 @@ public class Peak implements Comparable {
     /**
      * CompareTo method so that peaks can be stored in a BinarySearchTree
      * Use the peakNumber to do this.
-     * @param o
+     * @param p
      * @return Forgot. Look a the docs for Comparable
      */
     @Override
     public int compareTo(Object o) {
-        return 0;
+        int peakNumber = Integer.parseInt(o.toString());
+        if(peakNumber == this.getPeakNumber()){
+            return 0;
+        } else if(peakNumber > this.getPeakNumber()){
+            return 1;
+        } else{
+            return -1;
+        }
+    }
+
+    public String getPeakGroup(){
+        return peakGroup;
+    }
+
+    public int getPeakNumber(){
+        return peakNumber;
+    }
+
+    @Override
+    public String toString(){
+        return Integer.toString(peakNumber);
     }
 }
