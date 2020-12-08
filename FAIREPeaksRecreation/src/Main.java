@@ -35,8 +35,6 @@ public class Main {
             }
         }
 
-
-
        for(HashMap<String, TreeSet<Peak>> hashy: hashies){
             StringBuilder stringBuilder = new StringBuilder();
             for(String key: hashy.keySet()) {

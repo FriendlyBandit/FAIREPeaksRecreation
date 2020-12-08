@@ -5,6 +5,7 @@ import java.util.*;
 public class Importer {
     private HashMap<String, TreeSet<Peak>> data; //Peaks per key should be stored as a treeset
     private HashSet peakSet;
+    private String name;
 
     public Importer(){
         peakSet = new HashSet();
@@ -16,6 +17,7 @@ public class Importer {
      * @return
      */
     public HashMap initializeFiles(String path){
+        name = path;
         Scanner scan1 = null;
         try {
             scan1 = new Scanner(new File(path));
@@ -59,4 +61,7 @@ public class Importer {
         peakSet = new HashSet();
     }
 
+    public String getName(){
+        return name;
+    }
 }
