@@ -35,7 +35,9 @@ public class Main {
             }
         }
 
-       for(HashMap<String, TreeSet<Peak>> hashy: hashies){
+        System.out.println();
+
+        for(HashMap<String, TreeSet<Peak>> hashy: hashies){
             StringBuilder stringBuilder = new StringBuilder();
             for(String key: hashy.keySet()) {
                 stringBuilder.append(key + ", ");
