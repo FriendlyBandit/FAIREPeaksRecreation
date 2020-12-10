@@ -29,25 +29,7 @@ public class Peak implements Comparable {
     private int generatePeakNumber(){
         return Integer.parseInt(peakID.split("_")[2]);
     }
-
-    /*
-    /**
-     * CompareTo method so that peaks can be stored in a BinarySearchTree
-     * Use the peakNumber to do this.
-     * @param o
-     * @return Forgot. Look a the docs for Comparable
-     */
-    /*@Override
-    public int compareTo(Object o) {
-        int peakNumber = parseInt(o.toString());
-        if(peakNumber == getPeakNumber()){
-            return 0;
-        } else if(peakNumber > getPeakNumber()){
-            return -1;
-        } else{
-            return 1;
-        }
-    }*/
+    
 
     /**
      * CompareTo method so that peaks can be stored in a BinarySearchTree
@@ -59,15 +41,16 @@ public class Peak implements Comparable {
     //if it actually works well. I do not know yet. It works. This is buckets lel
     @Override
     public int compareTo(Object o) {
-        o = (Peak) o;
-        if (peakNumber == ((Peak) o).getPeakNumber()) {
+        Peak p = (Peak) o;
+        if(end == p.start){
             return 0;
-        } else if (peakNumber > ((Peak) o).getPeakNumber()) {
+        } else if(end > p.start){
             return 1;
-        } else {
+        } else{
             return -1;
         }
     }
+
 
     public String getPeakGroup(){
         return peakGroup;

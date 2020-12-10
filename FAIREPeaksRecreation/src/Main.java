@@ -44,21 +44,21 @@ public class Main {
             System.out.print(output.substring(0, output.length() - 2));
             System.out.println();
         }
-//      Displays all Peaks that were grabbed...
-//        for (HashMap<String, TreeMap<Integer, Peak>> hashy3 : hashies){
-//            for(String key : hashy3.keySet()){
-//                TreeMap<Integer, Peak> tree = hashy3.get(key);
-//                System.out.println("\n\n\n\n\n" + key);
-//                for(Integer I: tree.keySet()){
-//                    System.out.print(I + " Goes to " + tree.get(I).startAndEnd() + ", ");
-//                }
-//            }
-//            System.out.println();
-//            System.out.println();
-//            System.out.println();
-//            System.out.println();
-//            System.out.println();
-//            System.out.println();
-//        }
+
+        for (HashMap<String, TreeMap<Integer, Peak>> hashy3 : hashies){
+            for(String key : hashy3.keySet()){
+                TreeMap<Integer, Peak> tree = hashy3.get(key);
+                System.out.println("\n\n\n\n\n" + key);
+                for(Integer I: tree.keySet()){
+                    System.out.print(I + " Goes to " + tree.get(I).startAndEnd() + ", ");
+                }
+            }
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+        }
     }
 }
