@@ -3,13 +3,11 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Importer {
-    private HashMap<String, TreeSet<Peak>> data; //Peaks per key should be stored as a treeset
     private HashSet peakSet;
     private String name;
 
     public Importer(){
         peakSet = new HashSet();
-        data = new HashMap<>();
     }
 
     /**
@@ -17,6 +15,7 @@ public class Importer {
      * @return
      */
     public HashMap initializeFiles(String path){
+        HashMap<String, TreeSet<Peak>> returnData = new HashMap<>();
         name = path;
         Scanner scan1 = null;
         try {
@@ -33,13 +32,12 @@ public class Importer {
             if(tempPeak.getPeakGroup().equals(benchmarkPeak.getPeakGroup())){
                 peakSet.add(tempPeak);
             } else{
-                data.put(benchmarkPeak.getPeakGroup(), new TreeSet<Peak>(peakSet));
+                returnData.put(benchmarkPeak.getPeakGroup(), new TreeSet<Peak>(peakSet));
                 clearPeakList();
                 benchmarkPeak = initalizePeak(scan1.nextLine());
             }
         }
-
-        return data;
+        return returnData;
     }
 
     /**

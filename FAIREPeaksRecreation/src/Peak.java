@@ -59,6 +59,6 @@ public class Peak implements Comparable {
 
     @Override
     public String toString(){
-        return Integer.toString(peakNumber);
+        return start + " " + end;
     }
 }

@@ -20,17 +20,17 @@ public class Main {
         System.out.println(arguments[0]);
         System.out.println(arguments[1]);
 
+        HashMap<String, TreeSet<Peak>> firstFile;
+        HashMap<String, TreeSet<Peak>> secondFile;
         for(File f: dataDirectory.listFiles()){
-            HashMap<String, TreeSet<Peak>> hashy;
-
             if(f.toString().contains(arguments[0])){
                 System.out.println(f.toString());
-                hashy = import1.initializeFiles(f.toString());
-                hashies.add(hashy);
+                firstFile = import1.initializeFiles(f.toString());
+                hashies.add(firstFile);
             }else if (f.toString().contains(arguments[1])){
                 System.out.println(f.toString());
-                hashy = import1.initializeFiles(f.toString());
-                hashies.add(hashy);
+                secondFile = import1.initializeFiles(f.toString());
+                hashies.add(secondFile);
             }
         }
 
@@ -55,6 +55,14 @@ public class Main {
 
         HashMap<String, TreeSet<Peak>> set1 = hashies.get(0);
         HashMap<String, TreeSet<Peak>> set2 = hashies.get(1);
+
+//        System.out.println(set1.get("chr2L").first().toString());
+//        System.out.println(set2.get("chr2L").first().toString());
+
+
+        set1.get("chr2L").first().toString();
+        set2.get("chr2L").first().toString();
+
         Comparer compare1 = new Comparer(hashies.get(0), hashies.get(1));
         compare1.subSetTesting(set1.get("chr2L"), set2.get("chr2L"));
 
