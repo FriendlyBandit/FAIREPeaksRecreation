@@ -59,12 +59,34 @@ public class Main {
 //        System.out.println(set1.get("chr2L").first().toString());
 //        System.out.println(set2.get("chr2L").first().toString());
 
-
         set1.get("chr2L").first().toString();
         set2.get("chr2L").first().toString();
 
-        Comparer compare1 = new Comparer(hashies.get(0), hashies.get(1));
-        compare1.subSetTesting(set1.get("chr2L"), set2.get("chr2L"));
-
+        subSetTesting(set1.get("chr2L"), set2.get("chr2L"));
+    }
+    
+    public static void subSetTesting(TreeSet<Peak> givesPeaks,
+                              TreeSet<Peak> getsPeaks) {
+        Peak startPeak = null, endPeak = null;
+        Iterator<Peak> itr = givesPeaks.iterator();
+        for (int i = 0; i < 30; i++) {
+            Peak p = itr.next();
+            if (i == 9) {
+                startPeak = p;
+            }
+            if (i == 29) {
+                endPeak = p;
+            }
+        }
+        SortedSet<Peak> subTree2 = givesPeaks.subSet(startPeak, endPeak);
+        SortedSet<Peak> subTree = getsPeaks.subSet(startPeak, endPeak);
+        System.out.println(subTree.size());
+        for (Peak p : subTree) {
+            System.out.print(p.toString() + ", ");
+        }
+        System.out.println("\n" + subTree2.size());
+        for (Peak p : subTree2) {
+            System.out.print(p.toString() + ", ");
+        }
     }
 }

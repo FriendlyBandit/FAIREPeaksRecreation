@@ -36,32 +36,8 @@ public class Comparer {
 
     }
 
-    public void subSetTesting(TreeSet<Peak> givesPeaks,
-                                    TreeSet<Peak> getsPeaks){
-        Peak startPeak = null, endPeak = null;
-        Iterator<Peak> itr = givesPeaks.iterator();
-        for(int i = 0; i < 30; i++){
-            Peak p = itr.next();
-            if(i == 9){
-                startPeak = p;
-            }
-            if (i == 29){
-                endPeak = p;
-            }
-        }
-        SortedSet<Peak> subTree2 = givesPeaks.subSet(startPeak, endPeak);
-        SortedSet<Peak> subTree = getsPeaks.subSet(startPeak, endPeak);
-        System.out.println(subTree.size());
-        for(Peak p: subTree){
-            System.out.print(p.toString() + ", ");
-        }
-        System.out.println("\n" + subTree2.size());
-        for(Peak p: subTree2){
-            System.out.print(p.toString() + ", ");
-        }
+
 
     }
 
 
-
-}
