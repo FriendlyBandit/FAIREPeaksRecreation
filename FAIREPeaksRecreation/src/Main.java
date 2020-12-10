@@ -52,21 +52,13 @@ public class Main {
                 System.out.print(p.toString() + ", ");
             }
         }*/
-
-        HashMap<String, TreeSet<Peak>> set1 = hashies.get(0);
-        HashMap<String, TreeSet<Peak>> set2 = hashies.get(1);
-
-//        System.out.println(set1.get("chr2L").first().toString());
-//        System.out.println(set2.get("chr2L").first().toString());
-
-        set1.get("chr2L").first().toString();
-        set2.get("chr2L").first().toString();
-
-        subSetTesting(set1.get("chr2L"), set2.get("chr2L"));
+        
+        subSetTesting(hashies);
     }
-    
-    public static void subSetTesting(TreeSet<Peak> givesPeaks,
-                              TreeSet<Peak> getsPeaks) {
+
+    public static void subSetTesting(List<HashMap<String, TreeSet<Peak>>> hashies) {
+        TreeSet<Peak> givesPeaks = hashies.get(0).get("chr2L");
+        TreeSet<Peak> getsPeaks = hashies.get(1).get("chr2L");
         Peak startPeak = null, endPeak = null;
         Iterator<Peak> itr = givesPeaks.iterator();
         for (int i = 0; i < 30; i++) {
