@@ -31,7 +31,6 @@ public class Main {
                 System.out.println(f.toString());
                 hashy = import1.initializeFiles(f.toString());
                 hashies.add(hashy);
-
             }
         }
 
@@ -48,9 +47,16 @@ public class Main {
             System.out.println();
         }
 
-        //System.out.println(hashies.get(0).get("chr2L"));
+        /*for(String key: hashies.get(0).keySet()){
+            for(Peak p: hashies.get(0).get(key)){
+                System.out.print(p.toString() + ", ");
+            }
+        }*/
 
-
+        HashMap<String, TreeSet<Peak>> set1 = hashies.get(0);
+        HashMap<String, TreeSet<Peak>> set2 = hashies.get(1);
+        Comparer compare1 = new Comparer(hashies.get(0), hashies.get(1));
+        compare1.subSetTesting(set1.get("chr2L"), set2.get("chr2L"));
 
     }
 }

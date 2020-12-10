@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class Comparer {
@@ -34,7 +36,25 @@ public class Comparer {
 
     }
 
+    public void subSetTesting(TreeSet<Peak> givesPeaks,
+                                    TreeSet<Peak> getsPeaks){
+        Peak startPeak = null, endPeak = null;
+        Iterator<Peak> itr = givesPeaks.iterator();
+        for(int i = 0; i < 10; i++){
+            if(i == 1){
+                startPeak = itr.next();
+            }
+            if (i == 9){
+                endPeak = itr.next();
+            }
+        }
 
+        SortedSet<Peak> subTree = getsPeaks.subSet(startPeak, endPeak);
+        System.out.println(subTree.size());
+        for(Peak p: subTree){
+            System.out.print(p.toString() + ", ");
+        }
+    }
 
 
 
