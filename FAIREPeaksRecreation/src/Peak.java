@@ -25,6 +25,7 @@ public class Peak implements Comparable {
         this.peakNumber = generatePeakNumber();
     }
 
+
     private int generatePeakNumber(){
         return Integer.parseInt(peakID.split("_")[2]);
     }
@@ -55,7 +56,7 @@ public class Peak implements Comparable {
      * @return Forgot. Look a the docs for Comparable
      */
     // This is a version of compareTo that casts to a Peak. This will be preferred
-    //if it actually works well. I do not know yet
+    //if it actually works well. I do not know yet. It works. This is buckets lel
     @Override
     public int compareTo(Object o) {
         o = (Peak) o;
@@ -79,5 +80,9 @@ public class Peak implements Comparable {
     @Override
     public String toString(){
         return Integer.toString(peakNumber);
+    }
+
+    public String startAndEnd(){
+        return start + "==>" + end;
     }
 }
