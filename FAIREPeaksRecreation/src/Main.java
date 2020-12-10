@@ -47,10 +47,5 @@ public class Main {
 
             System.out.println();
         }
-
-        //System.out.println(hashies.get(0).get("chr2L"));
-
-
-
     }
 }

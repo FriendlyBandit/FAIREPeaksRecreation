@@ -36,6 +36,8 @@ public class Importer {
                 data.put(benchmarkPeak.getPeakGroup(), new TreeSet<Peak>(peakSet));
                 clearPeakList();
                 benchmarkPeak = initalizePeak(scan1.nextLine());
+                peakSet.add(tempPeak);
+                peakSet.add(benchmarkPeak);
             }
         }
 
