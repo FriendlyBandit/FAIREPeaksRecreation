@@ -48,7 +48,7 @@ public class Comparer {
             if(peak2 == null){
                 peak2 = peak1;
             }
-            
+
 
         }
     }
