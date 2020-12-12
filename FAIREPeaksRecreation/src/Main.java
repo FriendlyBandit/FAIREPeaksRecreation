@@ -60,6 +60,7 @@ public class Main {
         TreeSet<Peak> givesPeaks = hashies.get(0).get("chr2L");
         TreeSet<Peak> getsPeaks = hashies.get(1).get("chr2L");
         Peak startPeak = null, endPeak = null;
+
         Iterator<Peak> itr = givesPeaks.iterator();
         for (int i = 0; i < 30; i++) {
             Peak p = itr.next();
@@ -70,6 +71,7 @@ public class Main {
                 endPeak = p;
             }
         }
+
         SortedSet<Peak> subTree2 = givesPeaks.subSet(startPeak, endPeak);
         SortedSet<Peak> subTree = getsPeaks.subSet(startPeak, endPeak);
         System.out.println(subTree.size());

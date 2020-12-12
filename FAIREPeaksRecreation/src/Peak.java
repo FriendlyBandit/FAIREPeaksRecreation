@@ -49,6 +49,22 @@ public class Peak implements Comparable {
         }
     }
 
+    /**
+     * Takes a peak and compares it with this peak in order to see if it overlaps
+     * @param p a peak
+     * @return false if its a miss, true if it is a collision
+     */
+    public boolean overlaps(Peak peak){
+        boolean overlaps = false;
+        if(peak.start >= start && peak.start <= end){
+            overlaps = true;
+        }else if(peak.end >= start || peak.end <= end){
+            overlaps = true;
+        }
+
+        return overlaps;
+    }
+
     public String getPeakGroup(){
         return peakGroup;
     }
