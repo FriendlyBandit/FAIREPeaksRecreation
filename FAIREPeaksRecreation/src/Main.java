@@ -47,18 +47,19 @@ public class Main {
 
             System.out.println();
         }
-        System.out.println(hashies.size());
-        /*for(String key: hashies.get(0).keySet()){
+
+        for(String key: hashies.get(0).keySet()){
+            System.out.println("\n" + key);
             for(Peak p: hashies.get(0).get(key)){
                 System.out.print(p.toString() + ", ");
             }
-        }*/
+        }
         
         //subSetTesting(hashies);
-        Comparer comparer = new Comparer(hashies.get(0), hashies.get(1));
-        System.out.println("Collisons = " + comparer.getCollisions() +
-                "\nMisses in set 1 = " + comparer.getMissesForSet1() +
-                "\nMisses in set 2 = " + comparer.getMissesForSet2());
+//        Comparer comparer = new Comparer(hashies.get(0), hashies.get(1));
+//        System.out.println("Collisons = " + comparer.getCollisions() +
+//                "\nMisses in set 1 = " + comparer.getMissesForSet1() +
+//                "\nMisses in set 2 = " + comparer.getMissesForSet2());
     }
 
     public static void subSetTesting(List<HashMap<String, TreeSet<Peak>>> hashies) {

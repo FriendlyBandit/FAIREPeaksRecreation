@@ -37,10 +37,24 @@ public class Importer {
                 if(scan1.hasNextLine()) {
                     benchmarkPeak = initalizePeak(scan1.nextLine());
                 }
+                peakSet.add(tempPeak);
+                peakSet.add(benchmarkPeak);
             }
         }
         return returnData;
     }
+
+
+//    TreeMap<Integer, Peak> newMap = new TreeMap<>();
+//                newMap.putAll(peakMap); //New Deep copy of peakMap so that it can be given to data and not be changed
+//                data.put(benchmarkPeak.getPeakGroup(), newMap);
+//    clearPeakMap(); //Clears the peakMap so it can be added to again.
+//
+//    benchmarkPeak = initalizePeak(scan1.nextLine());
+//                peakMap.put(tempPeak.getPeakNumber(), tempPeak); //Puts first peak into peakMap
+//                peakMap.put(benchmarkPeak.getPeakNumber(), benchmarkPeak); //Puts second peak into peakMap
+
+
 
     /**
      * Takes a string (Line from file) and makes it into a peak
