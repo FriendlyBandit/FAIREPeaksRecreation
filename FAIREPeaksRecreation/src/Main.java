@@ -3,12 +3,12 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         List<HashMap<String, TreeSet<Peak>>> hashies = new ArrayList<>();
 
         Importer import1 = new Importer();
         File dataDirectory = new File("src/RealFiles");
-        for(File f: dataDirectory.listFiles()){
+        for (File f : dataDirectory.listFiles()) {
             System.out.println(f.toString());
             //HashMap<String, TreeSet<Peak>> hashy = import1.initializeFiles(f.toString());
             //hashies.add(hashy);
@@ -22,13 +22,13 @@ public class Main {
 
         HashMap<String, TreeSet<Peak>> firstFile;
         HashMap<String, TreeSet<Peak>> secondFile;
-        for(File f: dataDirectory.listFiles()){
+        for (File f : dataDirectory.listFiles()) {
             String fileName = f.toString().toLowerCase();
-            if(fileName.toString().contains(arguments[0])){
+            if (fileName.toString().contains(arguments[0])) {
                 System.out.println(f.toString());
                 firstFile = import1.initializeFiles(f.toString());
                 hashies.add(firstFile);
-            }else if (fileName.toString().contains(arguments[1])){
+            } else if (fileName.toString().contains(arguments[1])) {
                 System.out.println(f.toString());
                 secondFile = import1.initializeFiles(f.toString());
                 hashies.add(secondFile);
@@ -37,29 +37,31 @@ public class Main {
 
         System.out.println();
 
-        for(HashMap<String, TreeSet<Peak>> hashy: hashies){
-            StringBuilder stringBuilder = new StringBuilder();
-            for(String key: hashy.keySet()) {
-                stringBuilder.append(key + ", ");
-            }
-            String output = stringBuilder.toString();
-            System.out.print(output.substring(0, output.length()-2));
+//        for (HashMap<String, TreeSet<Peak>> hashy : hashies) {
+//            StringBuilder stringBuilder = new StringBuilder();
+//            for (String key : hashy.keySet()) {
+//                stringBuilder.append(key + ", ");
+//            }
+//            String output = stringBuilder.toString();
+//            System.out.print(output.substring(0, output.length() - 2));
+//
+//            System.out.println();
+//        }
 
-            System.out.println();
-        }
-
-        for(String key: hashies.get(0).keySet()){
-            System.out.println("\n" + key);
-            for(Peak p: hashies.get(0).get(key)){
-                System.out.print(p.toString() + ", ");
-            }
-        }
-        
+//    for (HashMap<String, TreeSet<Peak>> hashy : hashies) {
+//        System.out.println("\n" + hashy.values());
+//        for (String key : hashy.keySet()) {
+//            System.out.println("\n" + key);
+//            for (Peak p : hashy.get(key)) {
+//                System.out.print(p.toString() + ", ");
+//            }
+//        }
+//    }
         //subSetTesting(hashies);
-//        Comparer comparer = new Comparer(hashies.get(0), hashies.get(1));
-//        System.out.println("Collisons = " + comparer.getCollisions() +
-//                "\nMisses in set 1 = " + comparer.getMissesForSet1() +
-//                "\nMisses in set 2 = " + comparer.getMissesForSet2());
+        Comparer comparer = new Comparer(hashies.get(0), hashies.get(1));
+        System.out.println("Collisons = " + comparer.getCollisions() +
+                "\nMisses in set 1 = " + comparer.getMissesForSet1() +
+                "\nMisses in set 2 = " + comparer.getMissesForSet2());
     }
 
     public static void subSetTesting(List<HashMap<String, TreeSet<Peak>>> hashies) {

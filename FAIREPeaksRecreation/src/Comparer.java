@@ -12,11 +12,12 @@ public class Comparer {
                         HashMap<String, TreeSet<Peak>> dataSet2){
         this.dataSet1 = dataSet1;
         this.dataSet2 = dataSet2;
-        compareDataSets(dataSet1, dataSet2, "set1");
-        compareDataSets(dataSet2, dataSet1, "set2");
         collisions = 0;
         missesForSet1 = 0;
         missesForSet2 = 0;
+        compareDataSets(dataSet1, dataSet2, "set1");
+        compareDataSets(dataSet2, dataSet1, "set2");
+
     }
 
     /**
@@ -63,12 +64,14 @@ public class Comparer {
              if(peak1.overlaps(p)){
                  collisions++;
              }else if(dataSet.equals("set1")){
-                missesForSet1 ++;
+                 missesForSet1 ++;
              }else{
                  missesForSet2++;
              }
             }
+            System.out.println(peak1);
         }
+        System.out.println();
     }
 
     public int getCollisions(){

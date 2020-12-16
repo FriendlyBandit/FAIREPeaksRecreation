@@ -58,7 +58,7 @@ public class Peak implements Comparable {
         boolean overlaps = false;
         if(peak.start >= start && peak.start <= end){
             overlaps = true;
-        }else if(peak.end >= start || peak.end <= end){
+        }else if(peak.end >= start && peak.end <= end){
             overlaps = true;
         }
 
@@ -76,5 +76,6 @@ public class Peak implements Comparable {
     @Override
     public String toString(){
         return start + " " + end;
+        //return Integer.toString(peakNumber);
     }
 }
