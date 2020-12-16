@@ -15,7 +15,7 @@ public class Main {
         }
         Scanner scan1 = new Scanner(System.in);
         System.out.println("Which 2 files would you like to compare?");
-        String temp = scan1.nextLine();
+        String temp = scan1.nextLine().toLowerCase();
         String[] arguments = temp.split("\\s+");
         System.out.println(arguments[0]);
         System.out.println(arguments[1]);
@@ -23,11 +23,12 @@ public class Main {
         HashMap<String, TreeSet<Peak>> firstFile;
         HashMap<String, TreeSet<Peak>> secondFile;
         for(File f: dataDirectory.listFiles()){
-            if(f.toString().contains(arguments[0])){
+            String fileName = f.toString().toLowerCase();
+            if(fileName.toString().contains(arguments[0])){
                 System.out.println(f.toString());
                 firstFile = import1.initializeFiles(f.toString());
                 hashies.add(firstFile);
-            }else if (f.toString().contains(arguments[1])){
+            }else if (fileName.toString().contains(arguments[1])){
                 System.out.println(f.toString());
                 secondFile = import1.initializeFiles(f.toString());
                 hashies.add(secondFile);
@@ -46,14 +47,18 @@ public class Main {
 
             System.out.println();
         }
-
+        System.out.println(hashies.size());
         /*for(String key: hashies.get(0).keySet()){
             for(Peak p: hashies.get(0).get(key)){
                 System.out.print(p.toString() + ", ");
             }
         }*/
         
-        subSetTesting(hashies);
+        //subSetTesting(hashies);
+        Comparer comparer = new Comparer(hashies.get(0), hashies.get(1));
+        System.out.println("Collisons = " + comparer.getCollisions() +
+                "\nMisses in set 1 = " + comparer.getMissesForSet1() +
+                "\nMisses in set 2 = " + comparer.getMissesForSet2());
     }
 
     public static void subSetTesting(List<HashMap<String, TreeSet<Peak>>> hashies) {

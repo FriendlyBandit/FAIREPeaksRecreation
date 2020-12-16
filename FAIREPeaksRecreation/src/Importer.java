@@ -34,7 +34,9 @@ public class Importer {
             } else{
                 returnData.put(benchmarkPeak.getPeakGroup(), new TreeSet<Peak>(peakSet));
                 clearPeakList();
-                benchmarkPeak = initalizePeak(scan1.nextLine());
+                if(scan1.hasNextLine()) {
+                    benchmarkPeak = initalizePeak(scan1.nextLine());
+                }
             }
         }
         return returnData;
