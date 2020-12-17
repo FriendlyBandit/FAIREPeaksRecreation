@@ -16,7 +16,7 @@ public class Comparer {
         missesForSet1 = 0;
         missesForSet2 = 0;
         compareDataSets(dataSet1, dataSet2, "set1");
-        compareDataSets(dataSet2, dataSet1, "set2");
+        //compareDataSets(dataSet2, dataSet1, "set2");
 
     }
 
