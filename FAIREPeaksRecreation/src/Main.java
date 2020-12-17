@@ -58,6 +58,11 @@ public class Main {
 //        }
 //    }
         //subSetTesting(hashies);
+
+
+
+
+
         Comparer comparer = new Comparer(hashies.get(0), hashies.get(1));
         System.out.println("Collisons = " + comparer.getCollisions() +
                 "\nMisses in set 1 = " + comparer.getMissesForSet1() +
@@ -70,25 +75,25 @@ public class Main {
         Peak startPeak = null, endPeak = null;
 
         Iterator<Peak> itr = givesPeaks.iterator();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 11; i++) {
             Peak p = itr.next();
-            if (i == 9) {
+            if (i == 0) {
                 startPeak = p;
             }
-            if (i == 29) {
+            if (i == 10) {
                 endPeak = p;
             }
         }
-
-        SortedSet<Peak> subTree2 = givesPeaks.subSet(startPeak, endPeak);
+        System.out.println(startPeak + "    " + endPeak);
+        //SortedSet<Peak> subTree2 = givesPeaks.subSet(startPeak, endPeak);
         SortedSet<Peak> subTree = getsPeaks.subSet(startPeak, endPeak);
         System.out.println(subTree.size());
         for (Peak p : subTree) {
             System.out.print(p.toString() + ", ");
         }
-        System.out.println("\n" + subTree2.size());
-        for (Peak p : subTree2) {
-            System.out.print(p.toString() + ", ");
-        }
+//        System.out.println("\n" + subTree2.size());
+//        for (Peak p : subTree2) {
+//            System.out.print(p.toString() + ", ");
+//        }
     }
 }

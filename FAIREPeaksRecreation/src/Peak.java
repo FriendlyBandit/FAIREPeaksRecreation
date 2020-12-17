@@ -42,7 +42,7 @@ public class Peak implements Comparable {
         Peak p = (Peak) o;
         if(end == p.start){
             return 0;
-        } else if(end > p.start){
+        } else if(start > p.start){
             return 1;
         } else{
             return -1;
@@ -59,6 +59,9 @@ public class Peak implements Comparable {
         if(peak.start >= start && peak.start <= end){
             overlaps = true;
         }else if(peak.end >= start && peak.end <= end){
+            overlaps = true;
+        }
+        if(peak.start <= start && peak.end >= end){
             overlaps = true;
         }
 

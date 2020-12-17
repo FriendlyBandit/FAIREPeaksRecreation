@@ -69,9 +69,7 @@ public class Comparer {
                  missesForSet2++;
              }
             }
-            System.out.println(peak1);
         }
-        System.out.println();
     }
 
     public int getCollisions(){
