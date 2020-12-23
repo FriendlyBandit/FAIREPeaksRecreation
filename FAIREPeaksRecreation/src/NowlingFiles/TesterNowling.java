@@ -1,3 +1,6 @@
+package NowlingFiles;
+
+import java.io.File;
 import java.util.*;
 
 public class TesterNowling {
@@ -8,11 +11,15 @@ public class TesterNowling {
                 matches.add(PeakNowling);
             }
         }
-
         return matches;
     }
 
     public static void main(String[] args) {
+        //craftedTester();
+        testerWithFileGet();
+    }
+
+    public static void craftedTester(){
         ArrayList<PeakNowling> PeakNowlingList1 = new ArrayList<>();
         ArrayList<PeakNowling> PeakNowlingList2 = new ArrayList<>();
 
@@ -38,6 +45,42 @@ public class TesterNowling {
         List<PeakNowling> overlaps = findOverlapsInPeakNowlingList1(PeakNowlingList1, PeakNowlingList2);
         for(PeakNowling PeakNowling : overlaps) {
             System.out.println(PeakNowling);
+        }
+    }
+
+    public static void testerWithFileGet(){
+        List<HashMap<String, ArrayList<PeakNowling>>> hashies = new ArrayList<>();
+        HashMap<String, ArrayList<PeakNowling>> firstFile;
+        HashMap<String, ArrayList<PeakNowling>> secondFile;
+        ImporterNowling2 import1 = new ImporterNowling2();
+        String [] arguments = {"t1", "t2"};
+
+        File dataDirectory = new File("src/RealFiles");
+        for (File f : dataDirectory.listFiles()) {
+            String fileName = f.toString().toLowerCase();
+            if (fileName.toString().contains(arguments[0])) {
+                firstFile = import1.initializeFiles(f.toString());
+                hashies.add(firstFile);
+            } else if (fileName.toString().contains(arguments[1])) {
+                secondFile = import1.initializeFiles(f.toString());
+                hashies.add(secondFile);
+            }
+        }
+
+        HashMap<String, List<PeakNowling>> overLapsMap = new HashMap<>();
+        List<PeakNowling> overlaps;
+
+        for(HashMap<String, ArrayList<PeakNowling>> file: hashies){
+            for(String key: file.keySet()){
+                overlaps = findOverlapsInPeakNowlingList1(hashies.get(0).get(key), hashies.get(1).get(key));
+                overLapsMap.put(key, overlaps);
+            }
+        }
+
+        for(String key: overLapsMap.keySet()){
+            for(PeakNowling p: overLapsMap.get(key)){
+                System.out.println(p);
+            }
         }
     }
 }

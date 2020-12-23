@@ -1,6 +1,8 @@
+import NowlingFiles.PeakNowling;
+
 import static java.lang.Integer.parseInt;
 
-public class Peak implements Comparable {
+public class Peak implements Comparable<Peak> {
     private int start, end, peakNumber; //Start and end of a peak, peak number in sequence
     private String peakID, peakGroup; //Gives peak number and also
 
@@ -38,11 +40,10 @@ public class Peak implements Comparable {
     // This is a version of compareTo that casts to a Peak. This will be preferred
     //if it actually works well. I do not know yet
     @Override
-    public int compareTo(Object o) {
-        Peak p = (Peak) o;
-        if(end == p.start){
+    public int compareTo(Peak peak) {
+        if(start == peak.start && end == peak.end){
             return 0;
-        } else if(start > p.start){
+        } else if(start >= peak.start){
             return 1;
         } else{
             return -1;
@@ -55,17 +56,8 @@ public class Peak implements Comparable {
      * @return false if its a miss, true if it is a collision
      */
     public boolean overlaps(Peak peak){
-        boolean overlaps = false;
-        if(peak.start >= start && peak.start <= end){
-            overlaps = true;
-        }else if(peak.end >= start && peak.end <= end){
-            overlaps = true;
-        }
-        if(peak.start <= start && peak.end >= end){
-            overlaps = true;
-        }
-
-        return overlaps;
+        return (start <= peak.start && peak.start <= end) ||
+                (start <= peak.end && peak.end <= end);
     }
 
     public String getPeakGroup(){
@@ -78,7 +70,7 @@ public class Peak implements Comparable {
 
     @Override
     public String toString(){
-        return start + " " + end;
+        return getPeakGroup() + " " + start + " " + end;
         //return Integer.toString(peakNumber);
     }
 }

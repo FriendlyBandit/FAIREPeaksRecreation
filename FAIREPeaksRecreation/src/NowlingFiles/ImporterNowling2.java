@@ -1,12 +1,12 @@
+package NowlingFiles;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 public class ImporterNowling2 {
-    private HashSet PeakNowlingSet;
 
     public ImporterNowling2(){
-        PeakNowlingSet = new HashSet();
     }
 
     /**
@@ -14,7 +14,8 @@ public class ImporterNowling2 {
      * @return
      */
     public HashMap initializeFiles(String path){
-        HashMap<String, TreeSet<PeakNowling>> returnData = new HashMap<>();
+        ArrayList<PeakNowling> PeakNowlingList1 = new ArrayList<>();
+        HashMap<String, ArrayList<PeakNowling>> returnData = new HashMap<>();
         Scanner scan1 = null;
         try {
             scan1 = new Scanner(new File(path));
@@ -23,36 +24,42 @@ public class ImporterNowling2 {
         }
         PeakNowling benchmarkPeakNowling = initalizePeakNowling(scan1.nextLine());
         PeakNowling tempPeakNowling;
-        PeakNowlingSet.add(benchmarkPeakNowling);
+        PeakNowlingList1.add(benchmarkPeakNowling);
 
         while(scan1.hasNext()){
             tempPeakNowling = initalizePeakNowling(scan1.nextLine());
             if(tempPeakNowling.getPeakNowlingGroup().equals(benchmarkPeakNowling.getPeakNowlingGroup())){
-                PeakNowlingSet.add(tempPeakNowling);
+                PeakNowlingList1.add(tempPeakNowling);
             } else{
-                returnData.put(benchmarkPeakNowling.getPeakNowlingGroup(), new TreeSet<PeakNowling>(PeakNowlingSet));
-                clearPeakNowlingList();
+                Collections.sort(PeakNowlingList1);
+                returnData.put(benchmarkPeakNowling.getPeakNowlingGroup(), new ArrayList<>(PeakNowlingList1));
+                PeakNowlingList1.clear();
                 if(scan1.hasNextLine()) {
                     benchmarkPeakNowling = initalizePeakNowling(scan1.nextLine());
                 }
-                PeakNowlingSet.add(tempPeakNowling);
-                PeakNowlingSet.add(benchmarkPeakNowling);
+                PeakNowlingList1.add(tempPeakNowling);
+                PeakNowlingList1.add(benchmarkPeakNowling);
             }
         }
-        returnData.put(benchmarkPeakNowling.getPeakNowlingGroup(), new TreeSet<>(PeakNowlingSet));
+        Collections.sort(PeakNowlingList1);
 
+        returnData.put(benchmarkPeakNowling.getPeakNowlingGroup(), new ArrayList<>(PeakNowlingList1));
         return returnData;
     }
 
     /**
-     * Takes a string (Line from file) and makes it into a PeakNowling
+     * Takes a string (Line from file) and makes it into a NowlingFiles.PeakNowling
      */
     private PeakNowling initalizePeakNowling(String LineFromFile){
         return new PeakNowling(LineFromFile.split("\\s+"));
     }
 
-    private void clearPeakNowlingList(){
-        PeakNowlingSet.clear();
+    private void printList(ArrayList<PeakNowling> list){
+        for(PeakNowling p: list){
+            System.out.println(p.toString());
+        }
+        System.out.println();
     }
+
 }
 

@@ -23,6 +23,7 @@ public class Importer {
         } catch (FileNotFoundException e) {
             System.out.println("Wrong file path");
         }
+        clearPeakList();
         Peak benchmarkPeak = initalizePeak(scan1.nextLine());
         Peak tempPeak;
         peakSet.add(benchmarkPeak);
@@ -51,8 +52,7 @@ public class Importer {
      * @return
      */
     private Peak initalizePeak(String LineFromFile){
-        Peak peak = new Peak(LineFromFile.split("\\s+"));
-        return peak;
+        return new Peak(LineFromFile.split("\\s+"));
     }
 
     /**
@@ -62,7 +62,7 @@ public class Importer {
     }
 
     private void clearPeakList(){
-        peakSet = new HashSet();
+        peakSet.clear();
     }
 
     public String getName(){

@@ -1,15 +1,15 @@
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.security.spec.RSAOtherPrimeInfo;
+import java.util.*;
 
 public class Comparer {
     private HashMap<String, TreeSet<Peak>> dataSet1;
     private HashMap<String, TreeSet<Peak>> dataSet2;
     private int collisions, missesForSet1, missesForSet2;
+    private List<Peak> collisionList;
 
     public Comparer(HashMap<String, TreeSet<Peak>> dataSet1,
                         HashMap<String, TreeSet<Peak>> dataSet2){
+        collisionList = new ArrayList<>();
         this.dataSet1 = dataSet1;
         this.dataSet2 = dataSet2;
         collisions = 0;
@@ -38,38 +38,32 @@ public class Comparer {
      * Finds any overlapping peaks in other file
      */
     private void searchChromosome(TreeSet<Peak> givesPeaks,
-                                TreeSet<Peak> getsPeaks, String dataSet){
+                                        TreeSet<Peak> getsPeaks, String dataSet){
         Iterator<Peak> itr1 = givesPeaks.iterator();
-        Iterator<Peak> itr2 = givesPeaks.iterator();
 
-        itr2.next();//Moves itr2 one step ahead of itr1
+        Peak peak;
         while(itr1.hasNext()){
-            Peak peak1 = itr1.next();
-            Peak peak2 = null;
-
-            if(itr2.hasNext()){
-                peak2 = itr2.next();
-            }
-            if(peak2 == null){
-                peak2 = peak1;
-            }
-            SortedSet<Peak> potentialCollisions;
-
-            if(peak1.equals(peak2)){
-                potentialCollisions = getsPeaks.tailSet(peak1);
+            peak = itr1.next();
+            Set<Peak> potentialCollisions;
+            if(givesPeaks.higher(peak) == null){
+                potentialCollisions = getsPeaks.tailSet(peak);
+            }else if(givesPeaks.lower(peak) == null){
+                potentialCollisions = getsPeaks.subSet(peak,true, givesPeaks.higher(peak), true);
             }else{
-                potentialCollisions = getsPeaks.subSet(peak1, peak2);
+               potentialCollisions = getsPeaks.subSet(givesPeaks.lower(peak),true, givesPeaks.higher(peak), true);
             }
+
             for(Peak p: potentialCollisions){
-             if(peak1.overlaps(p)){
-                 collisions++;
-             }else if(dataSet.equals("set1")){
-                 missesForSet1 ++;
-             }else{
-                 missesForSet2++;
-             }
+                if(peak.overlaps(p)){
+                    collisionList.add(p);
+                    collisions++;
+                }
             }
         }
+    }
+
+    public List<Peak> getCollisionList(){
+        return collisionList;
     }
 
     public int getCollisions(){

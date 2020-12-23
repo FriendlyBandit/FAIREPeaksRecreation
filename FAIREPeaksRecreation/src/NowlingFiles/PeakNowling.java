@@ -1,3 +1,5 @@
+package NowlingFiles;
+
 public class PeakNowling implements Comparable<PeakNowling> {
     String chrom;
     int start;

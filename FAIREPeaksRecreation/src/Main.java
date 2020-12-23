@@ -59,14 +59,12 @@ public class Main {
 //    }
         //subSetTesting(hashies);
 
-
-
-
-
         Comparer comparer = new Comparer(hashies.get(0), hashies.get(1));
-        System.out.println("Collisons = " + comparer.getCollisions() +
-                "\nMisses in set 1 = " + comparer.getMissesForSet1() +
-                "\nMisses in set 2 = " + comparer.getMissesForSet2());
+        List<Peak> listOfPeaks = comparer.getCollisionList();
+        System.out.println("Collisons = " + comparer.getCollisions());
+        for(Peak p: listOfPeaks){
+            System.out.println(p);
+        }
     }
 
     public static void subSetTesting(List<HashMap<String, TreeSet<Peak>>> hashies) {
